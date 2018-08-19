@@ -1,0 +1,21 @@
+<?php
+
+/**
+* 
+*/
+class Mdemo extends CI_Model
+{
+
+	function __construct(){
+      parent:: __construct();
+	}
+
+	function listarCordenadas(){
+		 $this->db->select('id,lat,long');
+         $this->db->from('direccionesxy');
+         $resultado=$this->db->get();         
+	}
+	
+
+}
+?>
