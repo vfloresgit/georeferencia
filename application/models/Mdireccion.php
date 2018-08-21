@@ -14,14 +14,13 @@ class Mdireccion extends CI_Model
 		$this->db->insert_batch('direccionesxy',$data);
 	}
 	function listarCordenadas(){
-		
-        $this->db->select('id,lat,long');
+
+        $this->db->select('id,lat,long as lon');
          $this->db->from('direccionesxy');
+         //$this->db->limit(120,1);
          $resultado=$this->db->get();
          
-
-
-         return $resultado;
+         return $resultado->result_array();
         
 	}
 

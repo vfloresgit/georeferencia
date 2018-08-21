@@ -9,6 +9,7 @@
    <div class="container">
 		<br />
 		<h3 align="center">IMPORTACION DE DIRECCIONES</h3>
+		<input type="submit" name="import" value="Eliminar Registros" class="btn btn-danger"/>
 		<div class="row">
 	    
 			    <div class="col-md-6">
@@ -17,6 +18,7 @@
 								<input type="file" name="file" id="file" required accept=".xls, .xlsx" /></p>
 								<br />
 								<input type="submit" name="import" value="Importar Excel" class="btn btn-info" />
+
 							</form>
 				</div>
 
