@@ -77,7 +77,7 @@ class Demo extends CI_Controller {
 		      
          $decode=json_decode($res);
  
-           echo "<table border='1' width='850px'>";
+          echo "<table border='1' width='850px'>";
 		           echo "<tr>";
 				           echo "<td>id</td>";
 				           echo "<td>lat</td>";
