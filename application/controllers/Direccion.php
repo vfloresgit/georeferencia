@@ -58,8 +58,8 @@ class Direccion extends CI_Controller
            	 }
 
            }
-           $this->Mdireccion->insert($data);
-           echo 'Coordenadas importado correctamente!!';
+           $this->Mdireccion->insert($data); 
+           echo 'Coordenadas importado correctamente!! ';
 		   }
 
       }catch(Exception $e){
