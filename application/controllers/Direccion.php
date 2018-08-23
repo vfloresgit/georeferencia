@@ -59,7 +59,7 @@ class Direccion extends CI_Controller
 
            }
            $this->Mdireccion->insert($data); 
-           echo 'Coordenadas importado correctamente!! ';
+           echo 'Coordenadas importado correctamente!!';
 		   }
 
       }catch(Exception $e){
