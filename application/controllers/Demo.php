@@ -52,8 +52,10 @@ class Demo extends CI_Controller {
          }
          //print_r($dato);
          // $ini = array('id'=>'ini','lat'=>'-77.068468','lon'=>'-12.037849');   //PARA DIRECCIONES.XLS 
-         $ini = array('id'=>'ini','lat'=>'-78.524212','lon'=>'-7.145127');  
-	     $json=$dato;
+         // $ini = array('id'=>'ini','lat'=>'-76.942772882147','lon'=>'-12.16011818704');
+           // $ini = array('id'=>'ini','lat'=>'-77.01398813388','lon'=>'-11.939214504705');
+           $ini = array('id'=>'ini','lat'=>'-78.523120605298','lon'=>'-7.1531417150147'); 
+	      $json=$dato;
 
 		// echo "<pre>";
 	 //    print_r($ini);
