@@ -30,8 +30,8 @@ class Direccion extends CI_Controller
 		foreach($data->result() as $row){
 			$output.='<tr>
 			<td>'.$row->id.'</td>
-            <td>'.$row->lat.'</td>
-            <td>'.$row->long.'</td>
+            <td>'.$row->latitud.'</td>
+            <td>'.$row->longitud.'</td>
 			</tr>
 			';
 		}
@@ -69,5 +69,49 @@ class Direccion extends CI_Controller
       }
 
 	}
+
+  function importExcelEnterprise(){
+
+      try{
+
+        $this->Direccion_model->eliminarRegistros();       
+
+        if(isset($_FILES["file"]["name"])){
+           $path=$_FILES["file"]["tmp_name"];
+           $object=PHPExcel_IOFactory::load($path);
+           foreach ($object->getWorksheetIterator() as $worksheet) {
+             $highestRow=$worksheet->getHighestRow();
+             $highestColumn = $worksheet->getHighestColumn();
+             for($row=2;$row<=$highestRow;$row++){
+               // $id=$worksheet->getCellByColumnAndRow(0,$row)->getValue();
+               $distrito=$worksheet->getCellByColumnAndRow(1,$row)->getValue();
+               $direccion=$worksheet->getCellByColumnAndRow(2,$row)->getValue();
+               $departamento=$worksheet->getCellByColumnAndRow(3,$row)->getValue();
+               $provincia=$worksheet->getCellByColumnAndRow(4,$row)->getValue();
+               $ubigeo=$worksheet->getCellByColumnAndRow(5,$row)->getValue();
+               $longitud=$worksheet->getCellByColumnAndRow(6,$row)->getValue();
+               $latitud=$worksheet->getCellByColumnAndRow(7,$row)->getValue();
+               $data[]=array(
+                 'distrito'=>$distrito,
+                 'direccion'=>$direccion,
+                 'departamento'=>$departamento,
+                 'provincia'=>$provincia,
+                 'ubigeo'=>$ubigeo,
+                 'longitud'=>$longitud,
+                 'latitud'=>$latitud
+               );
+             }
+
+           }
+           $this->Direccion_model->insertExcel($data); 
+           echo 'Coordenadas importado correctamente!!';
+       }
+
+      }catch(Exception $e){
+        var_dump($e->getMessage());
+
+      }
+
+  }
 
 }	

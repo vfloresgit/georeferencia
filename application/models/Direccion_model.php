@@ -8,7 +8,7 @@ class Direccion_model extends CI_Model
 		// $this->db->order_by('id','ASC');
 		// $query=$this->db->get('direccionesxy');
 		// return $query;
-		$sql="select * from direccionesxy offset 1";
+		$sql="select * from direcciones offset 1";
 		$query = $this->db->query($sql);
 		return $query;
 	}
@@ -22,15 +22,23 @@ class Direccion_model extends CI_Model
         //  $this->db->from('direccionesxy');
         //  $resultado=$this->db->get();
         //  return $resultado->result_array();
-         $sql="select id,lat,long as lon from direccionesxy offset 1";
+         $sql="select id,longitud as lon,latitud as lat from direcciones offset 1";
          $resultado=$this->db->query($sql);
          return $resultado->result_array();
 	}
 
 	function PuntoDeInicio(){
-		$sql="select lat,long as lon from direccionesxy limit 1";
-         $inicio=$this->db->query($sql);
-         return $inicio->result_array();
+		$sql="select longitud as lon,latitud as lat from direcciones limit 1";
+        $inicio=$this->db->query($sql);
+        return $inicio->result_array();
+	}
+
+	function insertExcel($data){
+		$this->db->insert_batch('direcciones',$data);
+
+	}
+	function eliminarRegistros(){
+		$this->db->delete('direcciones');
 	}
 }
 ?>

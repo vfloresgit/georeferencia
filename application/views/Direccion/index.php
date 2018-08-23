@@ -85,10 +85,11 @@ $(document).ready(function(){
 			}
 		})
 	}
+	
 	$('#import_form').on('submit', function(event){
 		event.preventDefault();
 		$.ajax({
-			url:"http://localhost/georeferencia/index.php/Direccion/import",
+			url:"http://localhost/georeferencia/index.php/Direccion/importExcelEnterprise",
 			method:"POST",
 			data:new FormData(this),
 			contentType:false,
