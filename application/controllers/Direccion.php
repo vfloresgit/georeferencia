@@ -7,7 +7,8 @@ class Direccion extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Mdireccion');
+    
+    $this->load->model('Direccion_model');
 		$this->load->library('excel');
 	}
 
@@ -16,7 +17,7 @@ class Direccion extends CI_Controller
 	}
 
 	function fetch(){
-		$data=$this->Mdireccion->select();
+		$data=$this->Direccion_model->select();
 		$output='
         <h3 align="center">Total de datos - '.$data->num_rows().'</h3>
         <table class="table table-striped table-bordered">
@@ -58,7 +59,7 @@ class Direccion extends CI_Controller
            	 }
 
            }
-           $this->Mdireccion->insert($data); 
+           $this->Direccion_model->insert($data); 
            echo 'Coordenadas importado correctamente!!';
 		   }
 

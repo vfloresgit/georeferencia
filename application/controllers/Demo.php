@@ -6,7 +6,7 @@ class Demo extends CI_Controller {
     function __construct(){
 
        parent::__construct();
-       $this->load->model("Mdireccion");
+       $this->load->model("Direccion_model");
 
     }
 
@@ -21,63 +21,48 @@ class Demo extends CI_Controller {
         //TIEMPO DE EJECUCION DEL METODO
 		set_time_limit(0);
 
-
-        //$url = "http://192.168.0.60/routing/";
+      
 		$url = "http://192.168.0.60/routing/index.php/routing/soloorden/";
 
-        $resultado=$this->Mdireccion->listarCordenadas();
+		//METODO PARA LLAMAR A LA LISTA DE CORDENADAS DE LA BASE DE DATOS
 
-        // foreach ($resultado->result() as $lista){
+        $resultado=$this->Direccion_model->listarCordenadas();
 
-        //   echo $lista->id."<br>";
-           
-        //  }
-
-        //  exit;
-        //print_r($resultado);
-
-        //echo "gfsdhgf";
-
+        
         $dato = array();
 
-        // echo sizeof($resultado);
-	
+        //RECORRER LA DATA QUE SE OBTIENE DEL METODO LISTAR CORDENADAS Y LO ALMACENA EN LA VARIABLE DATO
          foreach ($resultado as $lista){
 
          	if(isset($lista['id'])){
          		array_push($dato, array('id'=>$lista['id'],'lat'=>$lista['lat'],'lon'=>$lista['lon']));
-         		//echo "OK";
+         		
          	}
 
          }
-         //print_r($dato);
-         // $ini = array('id'=>'ini','lat'=>'-77.068468','lon'=>'-12.037849');   //PARA DIRECCIONES.XLS 
-         // $ini = array('id'=>'ini','lat'=>'-76.942772882147','lon'=>'-12.16011818704');
-           // $ini = array('id'=>'ini','lat'=>'-77.01398813388','lon'=>'-11.939214504705');
-           $ini = array('id'=>'ini','lat'=>'-78.523120605298','lon'=>'-7.1531417150147'); 
-	      $json=$dato;
 
-		// echo "<pre>";
-	 //    print_r($ini);
-  //       echo "</pre>";
-/*
-         echo "<pre>";
-	     print_r($json);
-         echo "</pre>";
-	    
-	   */
+         //LLAMAR AL METODO PARA CAPTURAR EL PUNTO DE INICIO
+         $inicio=$this->Direccion_model->PuntoDeInicio();
 
+         //RECORRER LA DATA DE PUNTO DE INICIO
+         foreach ($inicio as $p) {
+                $latitud=$p['lat'];
+                $longitud=$p['lon'];
+         }
+
+          //PUNTO DE INICIO
+         $ini = array('id'=>'ini','lat'=>$latitud,'lon'=>$longitud); 
+         //TODO EL ARREGLO ALMACENADO EN LA VARIABLE JSON
+	     $json=$dato;
+
+	     //DATA DE PUNTO DE INICIO Y DATO CONVERTIDO A JSON
 		$arr = array("init"=>json_encode($ini),"json"=>json_encode($json));
-
-       
-      
-		 // echo "<pre>";
-		 // print_r($arr);
-		 // echo "</pre>";
-
-		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
-		      
-         $decode=json_decode($res);
+        
+        //MANDAR LOS DATOS A UNA API DE ROUTING
+ 		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
+		 
+		//DESYEISANDO
+        $decode=json_decode($res);
  
           echo "<table border='1' width='850px'>";
 		           echo "<tr>";
