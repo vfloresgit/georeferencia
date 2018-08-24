@@ -121,6 +121,7 @@ class Direccion extends CI_Controller
       }
 
   }
+
   function ruta(){
     $this->load->view('Ruta/ruta.html');
   }
@@ -129,12 +130,39 @@ class Direccion extends CI_Controller
 
     $data=$this->Direccion_model->CordenadasSecuenciadas();
     echo json_encode($data);
-    // return $data;
-    // foreach ($data->result() as $valores) {
-    //    echo $valores->id."<br>";
-    // }
-    // exit;
 
+  }
+
+  function exportexcel(){
+    $excel=new PHPexcel();
+    $excel->setActiveSheetIndex(0);
+    $cordenadas=$this->Direccion_model->CordenadasSecuenciadas();
+    $column_tabla=array("id","distrito","direccion","departamento","provincia","ubigeo","longitud","latitud","secuencia");
+    $column = 0;
+    $fila = 3;
+
+    foreach ($column_tabla as $columnas){
+      $excel->getActiveSheet()->setCellValueByColumnAndRow($column,2,$columnas);
+      $column++;
+    }
+
+
+    foreach ($cordenadas as $datos) {
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(0,$fila,$datos["id"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(1,$fila,$datos["distrito"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(2,$fila,$datos["direccion"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(3,$fila,$datos["departamento"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(4,$fila,$datos["provincia"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(5,$fila,$datos["ubigeo"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(6,$fila,$datos["longitud"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(7,$fila,$datos["latitud"]);
+       $excel->getActiveSheet()->setCellValueByColumnAndRow(8,$fila,$datos["secuencia"]);
+       $fila++;
+    }
+    $excel_hecho=PHPExcel_IOFactory::createWriter($excel,'Excel5');
+    header("Content-Type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment;filename='Secuencia de direcciones.xls'");
+    $excel_hecho->save('php://output');
   }
 
 
