@@ -121,5 +121,21 @@ class Direccion extends CI_Controller
       }
 
   }
+  function ruta(){
+    $this->load->view('Ruta/ruta.html');
+  }
+
+  function CordenadasSecuenciadas(){
+
+    $data=$this->Direccion_model->CordenadasSecuenciadas();
+    echo json_encode($data);
+    // return $data;
+    // foreach ($data->result() as $valores) {
+    //    echo $valores->id."<br>";
+    // }
+    // exit;
+
+  }
+
 
 }	

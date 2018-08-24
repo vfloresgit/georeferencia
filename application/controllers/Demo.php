@@ -17,7 +17,8 @@ class Demo extends CI_Controller {
 	}
 
 	public function texturl(){
-         
+
+
         //TIEMPO DE EJECUCION DEL METODO
 		set_time_limit(0);
 
@@ -46,9 +47,11 @@ class Demo extends CI_Controller {
 
          //RECORRER LA DATA DE PUNTO DE INICIO
          foreach ($inicio as $p) {
+         	    $id_punto_inicio=$p['id'];
                 $latitud=$p['lat'];
                 $longitud=$p['lon'];
          }
+         
 
           //PUNTO DE INICIO
          $ini = array('id'=>'ini','lat'=>$latitud,'lon'=>$longitud); 
@@ -56,37 +59,40 @@ class Demo extends CI_Controller {
 	     $json=$dato;
 
 	     //DATA DE PUNTO DE INICIO Y DATO CONVERTIDO A JSON
-		$arr = array("init"=>json_encode($ini),"json"=>json_encode($json));
+		 $arr = array("init"=>json_encode($ini),"json"=>json_encode($json));
         
         //MANDAR LOS DATOS A UNA API DE ROUTING
  		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
 		 
 		//DESYEISANDO
         $decode=json_decode($res);
+
+        $this->Direccion_model->RegistrarSecuencia($decode,$id_punto_inicio);
+        $this->load->view('Ruta/ruta.html');
  
-          echo "<table border='1' width='850px'>";
-		           echo "<tr>";
-				           echo "<td>id</td>";
-				           echo "<td>lat</td>";
-				           echo "<td>lon</td>";
-				           echo "<td>id_node</td>";
-				           echo "<td>seq</td>";
-		           echo "</tr>";
-          foreach ($decode as $valor) {
-		           echo "<tr>";
-				           echo "<td>".$valor->id."</td>";
-				           echo "<td>".$valor->lat."</td>";
-				           echo "<td>".$valor->lon."</td>";
-				           echo "<td>".$valor->id_node."</td>";
-				           echo "<td>".$valor->seq."</td>";
-		           echo "</tr>";
-          }
-          echo "</table>";
+  //         echo "<table border='1' width='850px'>";
+		//            echo "<tr>";
+		// 		           echo "<td>id</td>";
+		// 		           echo "<td>lat</td>";
+		// 		           echo "<td>lon</td>";
+		// 		           echo "<td>id_node</td>";
+		// 		           echo "<td>seq</td>";
+		//            echo "</tr>";
+  //         foreach ($decode as $valor) {
+		//            echo "<tr>";
+		// 		           echo "<td>".$valor->id."</td>";
+		// 		           echo "<td>".$valor->lat."</td>";
+		// 		           echo "<td>".$valor->lon."</td>";
+		// 		           echo "<td>".$valor->id_node."</td>";
+		// 		           echo "<td>".$valor->seq."</td>";
+		//            echo "</tr>";
+  //         }
+  //         echo "</table>";
 
 	
-		echo "<pre>";
-		print_r($res);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($res);
+		// echo "</pre>";
 
 	}
 
