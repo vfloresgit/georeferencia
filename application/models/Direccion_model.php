@@ -35,7 +35,6 @@ class Direccion_model extends CI_Model
 
 	function insertExcel($data){
 		$this->db->insert_batch('direcciones',$data);
-
 	}
 	function eliminarRegistros(){
 		$this->db->delete('direcciones');

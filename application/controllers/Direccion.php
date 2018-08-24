@@ -23,15 +23,25 @@ class Direccion extends CI_Controller
         <table class="table table-striped table-bordered">
          <tr>
          <th>Id</th>
-         <th>Latitud</th>
+         <th>Distrito</th>
+         <th>Direccion</th>
+         <th>Departamento</th>
+         <th>Provincia</th>
+         <th>Ubigeo</th>
          <th>Longitud</th>
+         <th>Latitud</th>
         </tr>
 		';
 		foreach($data->result() as $row){
 			$output.='<tr>
 			<td>'.$row->id.'</td>
-            <td>'.$row->latitud.'</td>
-            <td>'.$row->longitud.'</td>
+      <td>'.$row->distrito.'</td>
+      <td>'.$row->direccion.'</td>
+      <td>'.$row->departamento.'</td>
+      <td>'.$row->provincia.'</td>
+      <td>'.$row->ubigeo.'</td>
+      <td>'.$row->longitud.'</td>
+      <td>'.$row->latitud.'</td>
 			</tr>
 			';
 		}
@@ -72,9 +82,7 @@ class Direccion extends CI_Controller
 
   function importExcelEnterprise(){
 
-      try{
-
-        $this->Direccion_model->eliminarRegistros();       
+      try{     
 
         if(isset($_FILES["file"]["name"])){
            $path=$_FILES["file"]["tmp_name"];

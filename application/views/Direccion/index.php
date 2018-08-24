@@ -34,31 +34,23 @@
 		<h3 align="center" class="mb-5">IMPORTACION DE DIRECCIONES</h3>
         <form method="post" id="import_form" enctype="multipart/form-data">
 				<div class="row p-2">
-					<div class="col-md-4">
-						 	
-								<input type="file" name="file" id="file" required accept=".xls, .xlsx" />
-								<br />
-										
+					<div class="col-md-4">						 	
+							<input type="file" name="file" id="file" required accept=".xls, .xlsx" />
 					</div>
 					<div class="col-md-4">
-								<input type="submit" name="import" value="Importar Excel" class="btn btn-success" />
+							<input type="submit" name="import" value="Importar Excel" class="btn btn-success" />
 		            </div>
 					<div class="col-md-4"></div>
 				</div>
         </form>
      	<div class="row">
-	    
-			    <div class="col-md-6">
-							
+			    <div class="col-md-6">		
 				</div>
-
 				<div class="col-md-6">
 							<form method="post" id="ruteo_form" action="http://localhost/georeferencia/index.php/Demo/texturl" enctype="multipart/form-data">
-								
-								<input type="submit" name="import" value="Rutear" class="btn btn-primary" />
+						    <input type="submit" name="import" value="Rutear" class="btn btn-primary" />
 							</form>
 				</div>
-
 		</div>
 		<br />
 		                                     <!-- LISTADO DE LA TABLA -->
