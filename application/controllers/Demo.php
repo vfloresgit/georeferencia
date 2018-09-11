@@ -56,9 +56,12 @@ class Demo extends CI_Controller {
 
           //PUNTO DE INICIO
          $ini = array('id'=>'ini','lat'=>$latitud,'lon'=>$longitud); 
-
-
-
+          
+          	  echo "<pre>";
+         print_r($ini);
+         echo "</pre>";
+          
+         
 
 
          //TODO EL ARREGLO ALMACENADO EN LA VARIABLE JSON
@@ -74,9 +77,9 @@ class Demo extends CI_Controller {
 	     //DATA DE PUNTO DE INICIO Y DATO CONVERTIDO A JSON
 		 $arr = array("init"=>json_encode($ini),"json"=>json_encode($json));
 
-		  // echo "<pre>";
-    //      print_r($arr);
-    //      echo "</pre>";exit;
+		  echo "<pre>";
+         print_r($arr);
+         echo "</pre>";exit;
         
         //MANDAR LOS DATOS A UNA API DE ROUTING
  		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
