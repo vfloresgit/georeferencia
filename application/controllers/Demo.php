@@ -76,6 +76,8 @@ class Demo extends CI_Controller {
 		 // echo "</pre>";
 
 		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
+
+		
 		      
          $decode=json_decode($res);
  
