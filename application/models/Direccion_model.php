@@ -34,10 +34,13 @@ class Direccion_model extends CI_Model
 	}
 
 	function insertExcel($data){
+
 		$this->db->insert_batch('direcciones',$data);
 	}
+
 	function eliminarRegistros(){
-		$this->db->delete('direcciones');
+		$query = "delete from direcciones";
+		$this->db->query($query);
 	}
 	function RegistrarSecuencia($decode,$id_punto_inicio){
 

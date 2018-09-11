@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Routing</title>
-	<link rel="stylesheet" href="http://localhost/georeferencia/asset/css/bootstrap.css" />
-	<script src="http://localhost/georeferencia/asset/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://192.168.0.22:8080/georeferencia/asset/css/bootstrap.css" />
+	<script src="http://192.168.0.22:8080/georeferencia/asset/js/jquery.min.js"></script>
 </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,7 +50,7 @@
 			    <div class="col-md-6">		
 				</div>
 				<div class="col-md-6">
-							<form method="post" id="ruteo_form" action="http://localhost/georeferencia/index.php/Demo/texturl" enctype="multipart/form-data">
+							<form method="post" id="ruteo_form" action="http://192.168.0.22:8080/georeferencia/index.php/Demo/texturl" enctype="multipart/form-data">
 						    <input type="submit" name="import" value="Rutear" class="btn btn-primary" />
 							</form>
 				</div>
@@ -73,7 +73,7 @@ $(document).ready(function(){
 	function load_data()
 	{
 		$.ajax({
-			url:"http://localhost/georeferencia/index.php/Direccion/fetch",
+			url:"http://192.168.0.22:8080/georeferencia/index.php/Direccion/fetch",
 			method:"POST",
 			success:function(data){
 				$('#customer_data').html(data);
@@ -84,7 +84,7 @@ $(document).ready(function(){
 	$('#import_form').on('submit', function(event){
 		event.preventDefault();
 		$.ajax({
-			url:"http://localhost/georeferencia/index.php/Direccion/importExcelEnterprise",
+			url:"http://192.168.0.22:8080/georeferencia/index.php/Direccion/importExcelEnterprise",
 			method:"POST",
 			data:new FormData(this),
 			contentType:false,

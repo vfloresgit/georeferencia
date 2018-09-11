@@ -111,6 +111,7 @@ class Direccion extends CI_Controller
              }
 
            }
+            $this->Direccion_model->eliminarRegistros(); 
            $this->Direccion_model->insertExcel($data); 
            echo 'Coordenadas importado correctamente!!';
        }

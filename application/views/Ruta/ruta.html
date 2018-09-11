@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Routing</title>
-	<link rel="stylesheet" href="http://localhost/georeferencia/asset/css/bootstrap.css" />
-	<script src="http://localhost/georeferencia/asset/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://192.168.0.22:8080/georeferencia/asset/css/bootstrap.css" />
+	<script src="http://192.168.0.22:8080/georeferencia/asset/js/jquery.min.js"></script>
 </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +34,7 @@
 		<h3 align="center" class="mb-5">DIRECCIONES SECUENCIADAS</h3>
      	<div class="row">
 				<div class="col-md-12">
-							<form method="post" id="ruteo_form" action="http://localhost/georeferencia/index.php/Direccion/exportexcel" enctype="multipart/form-data">
+							<form method="post" id="ruteo_form" action="http://192.168.0.22:8080/georeferencia/index.php/Direccion/exportexcel" enctype="multipart/form-data">
 						    <input type="submit" name="import" value="Exporta Excel" class="btn btn-success" />
 							</form>
 				</div>
@@ -73,7 +73,7 @@ $(document).ready(function(){
 	function cargar_tabla()
 	{
 		$.ajax({
-			url:"http://localhost/georeferencia/index.php/Direccion/CordenadasSecuenciadas",
+			url:"http://192.168.0.22:8080/georeferencia/index.php/Direccion/CordenadasSecuenciadas",
 			method:"POST",
 			success:function(data){
 				// $('#customer_data').html(data);
