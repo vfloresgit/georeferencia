@@ -40,9 +40,10 @@ class Direccion_model extends CI_Model
 		$this->db->delete('direcciones');
 	}
 	function RegistrarSecuencia($decode,$id_punto_inicio){
-        
+
           foreach ($decode as $valor) {
           	  if ($valor->id == 'ini') {
+
           	  	$this->db->set('secuencia',$valor->seq);
           	  	$this->db->where('id',$id_punto_inicio);
 				$this->db->update('direcciones'); 

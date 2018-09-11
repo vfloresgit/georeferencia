@@ -53,19 +53,46 @@ class Demo extends CI_Controller {
          }
          
 
+
           //PUNTO DE INICIO
          $ini = array('id'=>'ini','lat'=>$latitud,'lon'=>$longitud); 
+
+
+
+
+
          //TODO EL ARREGLO ALMACENADO EN LA VARIABLE JSON
-	     $json=$dato;
+	     $json = $dato;
+
+	     	  // echo "<pre>";
+         // print_r($json);
+         // echo "</pre>";exit;
+
+
+        
 
 	     //DATA DE PUNTO DE INICIO Y DATO CONVERTIDO A JSON
 		 $arr = array("init"=>json_encode($ini),"json"=>json_encode($json));
+
+		  // echo "<pre>";
+    //      print_r($arr);
+    //      echo "</pre>";exit;
         
         //MANDAR LOS DATOS A UNA API DE ROUTING
  		$res = $this->curl_base($url,null,$arr,null,null,null,null,null);
+
+
+ 		  // echo "<pre>";
+     //     var_dump($res);
+     //     echo "</pre>";exit;
+
 		 
 		//DESYEISANDO
         $decode=json_decode($res);
+        // var_dump($decode);exit;
+
+        
+
 
         $this->Direccion_model->RegistrarSecuencia($decode,$id_punto_inicio);
         $this->load->view('Ruta/ruta.html');
@@ -98,7 +125,7 @@ class Demo extends CI_Controller {
 
 	public function curl_base($url,$cookie_jar,$arr,$referer,$useragent,$httpheader,$proxy,$port)
 	{
-
+         
 		$a = curl_init($url);
 		// curl_setopt($a, CURLOPT_VERBOSE, true);
 		curl_setopt($a, CURLOPT_POSTFIELDS, $arr);
@@ -108,8 +135,6 @@ class Demo extends CI_Controller {
 		curl_setopt($a, CURLOPT_CONNECTTIMEOUT ,2); 
 		$b = curl_exec($a);
 		// $info = curl_getinfo($a);
-		
-		curl_close($a);
 
 		return $b;
 		

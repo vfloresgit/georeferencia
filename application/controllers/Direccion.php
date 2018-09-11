@@ -82,7 +82,7 @@ class Direccion extends CI_Controller
 
   function importExcelEnterprise(){
 
-      try{     
+      try{ 
 
         if(isset($_FILES["file"]["name"])){
            $path=$_FILES["file"]["tmp_name"];
@@ -145,7 +145,6 @@ class Direccion extends CI_Controller
       $excel->getActiveSheet()->setCellValueByColumnAndRow($column,2,$columnas);
       $column++;
     }
-
 
     foreach ($cordenadas as $datos) {
        $excel->getActiveSheet()->setCellValueByColumnAndRow(0,$fila,$datos["id"]);
